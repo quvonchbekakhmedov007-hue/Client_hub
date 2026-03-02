@@ -1,0 +1,15 @@
+/* variables.css — Barcha ranglar shu yerda */
+:root {
+  --bg:       #0a0a0f;
+  --surface:  #12121a;
+  --card:     #1a1a26;
+  --border:   #2a2a3d;
+  --accent:   #6c63ff;
+  --accent2:  #ff6584;
+  --accent3:  #43e97b;
+  --text:     #e8e8f0;
+  --muted:    #6b6b8a;
+  --input-bg: #0f0f18;
+  --shadow:   0 8px 40px rgba(108,99,255,0.15);
+  --font-mono: 'DM Mono', monospace;
+}

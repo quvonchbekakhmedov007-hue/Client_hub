@@ -1,0 +1,11 @@
+/* responsive.css — Mobil qurilmalar */
+@media (max-width: 640px) {
+  .form-grid    { grid-template-columns: 1fr; }
+  .form-card    { padding: 1.5rem; }
+  .header       { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  table         { display: block; overflow-x: auto; }
+  .list-header  { flex-direction: column; align-items: flex-start; }
+  .search-bar   { max-width: 100%; width: 100%; }
+  .toast        { bottom: 1.5rem; right: 1rem; left: 1rem; top: auto; max-width: 100%; }
+}
+

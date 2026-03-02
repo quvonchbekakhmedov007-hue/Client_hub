@@ -1,0 +1,109 @@
+/* table.css — Ro'yxat, jadval, filter, pagination */
+
+.list-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;
+}
+.list-title { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; }
+
+.search-bar { position: relative; flex: 1; max-width: 300px; }
+.search-bar input { padding-left: 2.5rem; background: var(--surface); border-color: var(--border); }
+.search-icon {
+  position: absolute; left: 0.85rem; top: 50%;
+  transform: translateY(-50%); color: var(--muted); pointer-events: none;
+}
+
+.filter-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.pill {
+  padding: 0.35rem 0.9rem; border-radius: 20px;
+  font-size: 0.78rem; font-weight: 500; cursor: pointer;
+  border: 1px solid var(--border); background: var(--surface); color: var(--muted);
+  transition: all 0.2s;
+}
+.pill.active, .pill:hover {
+  background: var(--accent); border-color: var(--accent); color: #fff;
+  box-shadow: 0 3px 12px rgba(108,99,255,0.35);
+}
+
+/* Jadval */
+.table-wrap {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; overflow: hidden; box-shadow: var(--shadow);
+}
+table { width: 100%; border-collapse: collapse; }
+thead tr { background: var(--surface); border-bottom: 1px solid var(--border); }
+th {
+  padding: 1rem 1.2rem; text-align: left;
+  font-size: 0.72rem; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.07em; text-transform: uppercase;
+  cursor: pointer; user-select: none; white-space: nowrap;
+}
+th:hover { color: var(--text); }
+tbody tr {
+  border-bottom: 1px solid rgba(42,42,61,0.5);
+  transition: background 0.15s;
+  animation: rowIn 0.35s ease both;
+}
+@keyframes rowIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+tbody tr:hover { background: rgba(108,99,255,0.06); }
+tbody tr:last-child { border-bottom: none; }
+td { padding: 1rem 1.2rem; font-size: 0.875rem; vertical-align: middle; }
+
+.customer-cell { display: flex; align-items: center; gap: 0.9rem; }
+.avatar {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.customer-info strong { display: block; font-size: 0.875rem; font-weight: 600; }
+.customer-info small  { color: var(--muted); font-size: 0.78rem; }
+
+.category-tag {
+  font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted);
+  background: var(--surface); padding: 0.2rem 0.6rem;
+  border-radius: 6px; border: 1px solid var(--border);
+}
+
+.status-badge {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.25rem 0.75rem; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 600;
+}
+.status-badge.active  { background: rgba(67,233,123,0.12); color: var(--accent3); }
+.status-badge.pending { background: rgba(255,101,132,0.12); color: var(--accent2); }
+.status-badge.vip     { background: rgba(108,99,255,0.15);  color: var(--accent);  }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+.action-btns { display: flex; gap: 0.5rem; }
+.btn-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--muted);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; transition: all 0.2s;
+}
+.btn-icon:hover        { background: var(--accent);  border-color: var(--accent);  color: #fff; }
+.btn-icon.delete:hover { background: var(--accent2); border-color: var(--accent2); color: #fff; }
+
+.empty-state { text-align: center; padding: 4rem 2rem; color: var(--muted); }
+.empty-icon  { font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; }
+
+/* Pagination */
+.pagination {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 1.5rem; padding: 0 0.5rem;
+}
+.page-info { font-size: 0.8rem; color: var(--muted); font-family: var(--font-mono); }
+.page-btns { display: flex; gap: 0.4rem; }
+.page-btn {
+  width: 34px; height: 34px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--muted);
+  font-size: 0.875rem; display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.page-btn.active, .page-btn:hover {
+  background: var(--accent); border-color: var(--accent); color: #fff;
+}

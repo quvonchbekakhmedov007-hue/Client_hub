@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    {% load static %}
+
+  <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'css/variables.css' %}">
+  <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components.css' %}">
+  <link rel="stylesheet" href="{% static 'css/table.css' %}">
+  <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClientHub — Mijozlar Tizimi</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- CSS fayllar — static/css/ papkasidan -->
+  <link rel="stylesheet" href="/static/css/reset.css">
+  <link rel="stylesheet" href="/static/css/variables.css">
+  <link rel="stylesheet" href="/static/css/layout.css">
+  <link rel="stylesheet" href="/static/css/components.css">
+  <link rel="stylesheet" href="/static/css/table.css">
+  <link rel="stylesheet" href="/static/css/responsive.css">
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">👥</div>
+      <span class="logo-text">ClientHub</span>
+    </div>
+    <div class="stats-badge">
+      <div class="badge">Jami: <span id="totalCount">0</span></div>
+      <div class="badge">Faol: <span id="activeCount">0</span></div>
+    </div>
+  </header>
+
+  <!-- TAB TUGMALAR -->
+  <nav class="tabs">
+    <button class="tab active" onclick="switchTab('form')">+ Yangi Mijoz</button>
+    <button class="tab"        onclick="switchTab('list')">📋 Mijozlar Ro'yxati</button>
+  </nav>
+
+  <!-- ==============================
+       FORMA VIEW
+  =============================== -->
+  <div id="formView" class="view active">
+    <div class="form-card">
+
+      <h2 class="form-title">Ro'yxatdan O'tish</h2>
+      <p  class="form-subtitle">Yangi mijoz ma'lumotlarini to'ldiring</p>
+
+      <form id="regForm" method="POST" action="{% url 'Client_form' %}" novalidate>
+      {% csrf_token %}
+
+        <!-- Avatar -->
+        <div class="field full">
+          <label>Avatar tanlang</label>
+          <div class="avatar-picker">
+            <div class="avatar-opt selected" data-emoji="👤"    onclick="selectAvatar(this)">👤</div>
+            <div class="avatar-opt"          data-emoji="🧑‍💼" onclick="selectAvatar(this)">🧑‍💼</div>
+            <div class="avatar-opt"          data-emoji="👩‍💼" onclick="selectAvatar(this)">👩‍💼</div>
+            <div class="avatar-opt"          data-emoji="🧑‍🔧" onclick="selectAvatar(this)">🧑‍🔧</div>
+            <div class="avatar-opt"          data-emoji="👨‍💻" onclick="selectAvatar(this)">👨‍💻</div>
+            <div class="avatar-opt"          data-emoji="👩‍💻" onclick="selectAvatar(this)">👩‍💻</div>
+            <div class="avatar-opt"          data-emoji="🧑‍🎨" onclick="selectAvatar(this)">🧑‍🎨</div>
+            <div class="avatar-opt"          data-emoji="🤵"    onclick="selectAvatar(this)">🤵</div>
+          </div>
+        </div>
+
+        <div class="form-grid">
+
+          <div class="field">
+            <label for="firstName">Ism *</label>
+            <input type="text" id="firstName" name="first_name" placeholder="Jasur" required>
+          </div>
+
+          <div class="field">
+            <label for="lastName">Familiya *</label>
+            <input type="text" id="lastName" name="last_name" placeholder="Toshmatov" required>
+          </div>
+
+          <div class="field full">
+            <label for="email">Email *</label>
+            <div class="input-group">
+              <span class="input-icon">✉</span>
+              <input type="email" id="email" placeholder="jasur@example.com" name="email" required>
+            </div>
+            <span class="error-msg" id="emailError">❌ Bu email allaqachon mavjud!</span>
+          </div>
+
+          <div class="field">
+            <label for="phone">Telefon *</label>
+            <div class="input-group">
+              <span class="input-icon">📱</span>
+              <input type="tel" id="phone" name="phone_number" placeholder="+998 90 123 45 67" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="city">Shahar</label>
+            <select id="city" name="city">
+              <option value="">— Tanlang —</option>
+              {% for value,label in city_choices %}
+              <option value="{{value}}">{{label}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="category">Kategoriya</label>
+            <select id="category" name="category">
+            <option value="">— Tanlang —</option>
+            {% for value,label in category_choices%}
+            <option value="{{value}}">{{label}}</option>
+            {% endfor %}
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="status">Status</label>
+            <select id="status" name="status">
+            <option value="">— Tanlang —</option>
+            {% for value,label in status_choices %}
+            <option value="{{value}}">{{label}}</option>
+            {% endfor %}
+            </select>
+          </div>
+
+          <div class="field full">
+            <label for="notes">Izoh</label>
+            <textarea id="notes" placeholder="Qo'shimcha ma'lumot..."></textarea>
+          </div>
+
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">
+          ✦ Ro'yxatdan O'tkazish
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ==============================
+       RO'YXAT VIEW
+  =============================== -->
+  <div id="listView" class="view">
+
+    <div class="list-header">
+      <h2 class="list-title">Mijozlar</h2>
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Qidirish..." oninput="filterList()">
+      </div>
+    </div>
+
+    <div class="filter-pills">
+      <button class="pill active" onclick="filterByStatus('all', this)">Barchasi</button>
+      <button class="pill"        onclick="filterByStatus('active', this)">✅ Faol</button>
+      <button class="pill"        onclick="filterByStatus('pending', this)">⏳ Kutilmoqda</button>
+      <button class="pill"        onclick="filterByStatus('vip', this)">⭐ VIP</button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th onclick="sortBy('firstName')">Mijoz ↕</th>
+            <th onclick="sortBy('email')">Email ↕</th>
+            <th>Telefon</th>
+            <th onclick="sortBy('city')">Shahar ↕</th>
+            <th>Kategoriya</th>
+            <th onclick="sortBy('status')">Status ↕</th>
+            <th>Amallar</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+
+      <div id="emptyState" class="empty-state" style="display:none">
+        <div class="empty-icon">🔍</div>
+        <p>Hech narsa topilmadi</p>
+      </div>
+    </div>
+
+    <div class="pagination">
+      <span class="page-info" id="pageInfo">0 ta</span>
+      <div class="page-btns" id="pageBtns"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <span class="toast-icon">🎉</span>
+  <div class="toast-msg">
+    <strong>Muvaffaqiyatli!</strong>
+    <small>Mijoz saqlandi</small>
+  </div>
+</div>
+
+<!-- JS fayllar — static/js/ papkasidan — TARTIB MUHIM! -->
+  <script src="{% static 'js/state.js' %}"></script>
+  <script src="{% static 'js/api.js' %}"></script>
+  <script src="{% static 'js/ui.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>

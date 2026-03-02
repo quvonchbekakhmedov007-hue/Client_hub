@@ -1,0 +1,7 @@
+
+/* reset.css */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; }
+body { font-family: 'Sora', sans-serif; min-height: 100vh; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+button { font-family: 'Sora', sans-serif; cursor: pointer; }
+input, select, textarea { font-family: 'Sora', sans-serif; }
