@@ -31,7 +31,7 @@ class Customer(models.Model) :
     ]
 
     # Maydonlar
-    avatar = models.CharField(max_length=10, default='👤')
+    # avatar = models.CharField(max_length=10, default='👤')
     first_name=models.CharField(max_length=100, blank=False,null=False)
     last_name=models.CharField(max_length=100, blank=False, null=False)
     email=models.EmailField(max_length=100,unique=True, blank=False, null=False)
@@ -39,7 +39,8 @@ class Customer(models.Model) :
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active')
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, blank=True)
     city= models.CharField(max_length=50, choices=CITY_CHOICES,     blank=True)
+    notice=models.TextField()
 
 
-def __str__(self) :
-    return f"{self.first_name} {self.last_name}"
+    def __str__(self) :
+      return f"{self.first_name} {self.last_name}"

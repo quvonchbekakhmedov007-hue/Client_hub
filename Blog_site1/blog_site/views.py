@@ -9,10 +9,13 @@ import json
 def Client_form(request):
     if request.method == 'POST':
         form = ClientForm(request.POST)
+        print("post keldi")
+        print(form.request)
         if form.is_valid():
             form.save()
-            return JsonResponse({'success': True})
-            # return redirect('Client_form')
+            return redirect('Client_form')
+        else:
+            print("xato",form.errors)
     else:
         form = ClientForm()  # ← bo'sh forma
 

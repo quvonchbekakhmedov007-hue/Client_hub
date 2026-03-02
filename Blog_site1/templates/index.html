@@ -4,12 +4,7 @@
 <head>
     {% load static %}
 
-  <link rel="stylesheet" href="{% static 'css/reset.css' %}">
-  <link rel="stylesheet" href="{% static 'css/variables.css' %}">
-  <link rel="stylesheet" href="{% static 'css/layout.css' %}">
-  <link rel="stylesheet" href="{% static 'css/components.css' %}">
-  <link rel="stylesheet" href="{% static 'css/table.css' %}">
-  <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ClientHub — Mijozlar Tizimi</title>
@@ -18,12 +13,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- CSS fayllar — static/css/ papkasidan -->
-  <link rel="stylesheet" href="/static/css/reset.css">
-  <link rel="stylesheet" href="/static/css/variables.css">
-  <link rel="stylesheet" href="/static/css/layout.css">
-  <link rel="stylesheet" href="/static/css/components.css">
-  <link rel="stylesheet" href="/static/css/table.css">
-  <link rel="stylesheet" href="/static/css/responsive.css">
+  <link rel="stylesheet" href="{% static 'css/reset.css'%}">
+  <link rel="stylesheet" href="{%static 'css/variables.css'%}">
+  <link rel="stylesheet" href="{%static 'css/layout.css'%}">
+  <link rel="stylesheet" href="{%static 'css/components.css'%}">
+  <link rel="stylesheet" href="{%static 'css/table.css'%}">
+  <link rel="stylesheet" href="{%static 'css/responsive.css'%}">
 </head>
 <body>
 
@@ -135,7 +130,7 @@
 
           <div class="field full">
             <label for="notes">Izoh</label>
-            <textarea id="notes" placeholder="Qo'shimcha ma'lumot..."></textarea>
+            <textarea id="notes" name="notice" placeholder="Qo'shimcha ma'lumot..."></textarea>
           </div>
 
         </div>
