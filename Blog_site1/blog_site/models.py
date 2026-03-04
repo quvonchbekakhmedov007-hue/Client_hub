@@ -31,7 +31,7 @@ class Customer(models.Model) :
     ]
 
     # Maydonlar
-    # avatar = models.CharField(max_length=10, default='👤')
+    avatar = models.CharField(max_length=10, default='👤')
     first_name=models.CharField(max_length=100, blank=False,null=False)
     last_name=models.CharField(max_length=100, blank=False, null=False)
     email=models.EmailField(max_length=100,unique=True, blank=False, null=False)

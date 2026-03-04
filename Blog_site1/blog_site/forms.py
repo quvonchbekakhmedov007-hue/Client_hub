@@ -6,14 +6,5 @@ class ClientForm(forms.ModelForm):
 
     class Meta:
         model = Customer
-        fields = [
-            'first_name',
-            'last_name',
-            'email',
-            'phone_number',
-            'city',
-            'category',
-            'status',
-            'notice',
-        ]
+        fields ="__all__"
         # avatar ni olib tashladik — u ixtiyoriy
